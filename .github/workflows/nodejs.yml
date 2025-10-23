@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Node version
-      uses: node --version
+      run: node --version
 
     - name: Instalando dependencias
       run: npm install
