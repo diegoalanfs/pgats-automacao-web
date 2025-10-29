@@ -10,6 +10,9 @@ import login, {
 import cadastro from '../modules/register/index'
 import contact from '../modules/contact/index'
 import product from '../modules/products/index'
+import home, {
+    SUCCESS_MSG_SUBSCRIBED
+} from '../modules/home/index'
 
 describe('Automation Exercise', () => {
 
@@ -82,6 +85,15 @@ describe('Automation Exercise', () => {
         product.verifyTitleText('Searched Products')
         product.checkQuantityProductsAtList(1)
         product.checkSearchProduct(productName)
+    });
+
+    it('Verify Subscription in home page', () => {
+        home.verifyHomePage()
+        home.scrollToBottom()
+        home.verifySubscriptionTitle()
+        home.fillFormSubscription(userData.user)
+        home.submitSubscription()
+        home.checkSubscription(SUCCESS_MSG_SUBSCRIBED)
     });
 
 });

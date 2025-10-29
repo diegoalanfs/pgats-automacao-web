@@ -10,6 +10,10 @@ class Menu {
     navigateToProducts() {
         cy.visit('/products')
     }
+
+    navigateTohome() {
+        cy.visit('')
+    }
 }
 
 export default new Menu()
