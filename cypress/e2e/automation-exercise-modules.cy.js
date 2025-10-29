@@ -1,80 +1,65 @@
 /// <reference types="cypress" />
 
-import userData from '../fixtures/example.json'
-
-import { faker } from '@faker-js/faker'
-
+import userData from '../fixtures/user.json'
+import contactData from '../fixtures/contact.json'
 import menu from '../modules/menu/index'
-import login from '../modules/login/index'
-import cadastro from '../modules/cadastro/index'
+import login, {
+    ERROR_MSG_INCORRECT_LOGIN,
+    ERROR_MSG_EXISTING_USER
+} from '../modules/login/index'
+import cadastro from '../modules/register/index'
+import contact from '../modules/contact/index'
 
 describe('Automation Exercise', () => {
 
     beforeEach(() => {
-        //cy.viewport('iphone-xr')
-        cy.visit('https://automationexercise.com/')
-        menu.navegarParaLogin()
+        cy.visit('')
     })
 
     it('Register User', () => {
-        login.preencherFormularioDePreCadastro()
-
-        cadastro.preencherFormularioDeCadastroCompleto()
-
-        cy.get('[data-qa="create-account"]').click()
-
-        cy.url().should('include', 'account_created')
-        cy.contains('[data-qa="account-created"]', 'Account Created!')
-        cy.get('[data-qa="account-created"]').should('have.text', 'Account Created!')
-
+        menu.navigateToLogin()
+        login.fillPreRegisterForm()
+        cadastro.fillCompleteRegisterForm()
+        cadastro.clickCreateAccount()
+        cadastro.checkAccountCreated()
     });
 
     it('Login User with correct email and password', () => {
-
-        login.preencherFormularioDeLogin(userData.user,userData.password)
-
-        cy.get('i.fa-user').parent().should('contain', userData.name)
-        cy.get('a[href="/logout"]').should('be.visible')
-
-
+        menu.navigateToLogin()
+        login.fillLoginForm(userData.user, userData.password)
+        login.checkLoggedUser(userData.name)
     })
 
     it('Login User with incorrect email and password', () => {
-
-        login.preencherFormularioDeLogin('invalid@mail.com','147845')
-
-        cy.get('.login-form > form > p').should('contain', 'Your email or password is incorrect!')
-
-
+        menu.navigateToLogin()
+        login.fillLoginForm('invalid@mail.com', '147845')
+        login.checkIncorrectLogin(ERROR_MSG_INCORRECT_LOGIN)
     })
 
     it('Logout User', () => {
-
-        login.preencherFormularioDeLogin(userData.user,userData.password)
-
-        cy.get('i.fa-user').parent().should('contain', userData.name)
-        cy.get('a[href="/logout"]').should('be.visible')
-
-        cy.get('a[href="/logout"]').should('be.visible').click()
-
-        cy.url().should('contain', 'login')
-        cy.contains('Login to your account')
-
-        cy.get('a[href="/logout"]').should('not.exist')
-        cy.get('a[href="/login"]').should('contain', 'Signup / Login')
-
-
+        menu.navigateToLogin()
+        login.fillLoginForm(userData.user, userData.password)
+        login.checkLoggedUser(userData.name)
+        login.clickLogout()
+        login.checkLogout()
     })
 
     it('Register User with existing email', () => {
-
-        cy.get('input[data-qa="signup-name"]').type('QA Tester')
-        cy.get('input[data-qa="signup-email"]').type('qa-tester-1759531043853@mail.com')
-        cy.contains('button', 'Signup').click()
-
-        cy.get('.signup-form > form > p').should('contain', 'Email Address already exist!')
-
-
+        menu.navigateToLogin()
+        login.fillFormWithExistingUser(userData.name, userData.user)
+        login.checkExistingUser(ERROR_MSG_EXISTING_USER)
     })
+
+    it('Contact Us Form', () => {
+        menu.navigateToContectUs()
+        contact.fillContactUsForm(
+            contactData.name,
+            contactData.email,
+            contactData.subject,
+            contactData.message)
+        contact.selectFile('contact.json')
+        contact.submitMessage()
+        contact.checkDataSubmit()
+    });
 
 });

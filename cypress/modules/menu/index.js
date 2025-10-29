@@ -1,6 +1,10 @@
 class Menu {
-    navegarParaLogin() {
-        cy.get('a[href="/login"]').click()
+    navigateToLogin() {
+        cy.visit('/login')
+    }
+
+    navigateToContectUs() {
+        cy.visit('/contact_us')
     }
 }
 

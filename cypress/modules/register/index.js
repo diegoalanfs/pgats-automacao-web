@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 
 class Cadastro {
-    preencherFormularioDeCadastroCompleto() {
+    fillCompleteRegisterForm() {
         cy.get('input#id_gender1').check()
         cy.get('input#password').type(faker.internet.password({ length: 6 }), { log: false })
 
@@ -21,6 +21,15 @@ class Cadastro {
         cy.get('input#city').type(faker.location.city())
         cy.get('[data-qa="zipcode"]').type(faker.location.zipCode())
         cy.get('[data-qa="mobile_number"]').type('111 222 333')
+    }
+
+    clickCreateAccount() {
+        cy.get('[data-qa="create-account"]').click()
+    }
+
+    checkAccountCreated (){
+        cy.url().should('include', 'account_created')
+        cy.get('[data-qa="account-created"]').should('have.text', 'Account Created!')
     }
 }
 
