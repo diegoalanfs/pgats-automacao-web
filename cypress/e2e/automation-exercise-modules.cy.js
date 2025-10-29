@@ -9,6 +9,7 @@ import login, {
 } from '../modules/login/index'
 import cadastro from '../modules/register/index'
 import contact from '../modules/contact/index'
+import product from '../modules/products/index'
 
 describe('Automation Exercise', () => {
 
@@ -60,6 +61,27 @@ describe('Automation Exercise', () => {
         contact.selectFile('contact.json')
         contact.submitMessage()
         contact.checkDataSubmit()
+    });
+
+    it('Verify All Products and product detail page', () => {
+        menu.navigateToProducts()
+        product.verifyTitleText('All Products')
+        product.verifyProductsAtList()
+        product.clickOnTheFirstViewProduct()
+        product.checkProductDetailsScreen()
+        product.checkDetailsAreVisible()
+    });
+
+    it('Search Product', () => {
+        const productName = 'Blue Top'
+
+        menu.navigateToProducts()
+        product.verifyTitleText('All Products')
+        product.fillSearchProduct(productName)
+        product.clickSearchProduct()
+        product.verifyTitleText('Searched Products')
+        product.checkQuantityProductsAtList(1)
+        product.checkSearchProduct(productName)
     });
 
 });

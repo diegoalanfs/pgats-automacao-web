@@ -1,14 +1,16 @@
 import { getRandomEmail } from '../../support/helpers'
 import { faker } from '@faker-js/faker'
 
+// ***************** MESSAGES *****************
 export const ERROR_MSG_INCORRECT_LOGIN =
   'Your email or password is incorrect!'
 export const ERROR_MSG_EXISTING_USER =
   'Email Address already exist!'
 
+
 class Login {
     fillPreRegisterForm() {
-        cy.get('input[data-qa="signup-name"]').type('QA Tester')
+        cy.get('input[data-qa="signup-name"]').type(faker.person.firstName())
         cy.get('input[data-qa="signup-email"]').type(getRandomEmail())
         cy.contains('button', 'Signup').click()
     }

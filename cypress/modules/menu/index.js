@@ -6,6 +6,10 @@ class Menu {
     navigateToContectUs() {
         cy.visit('/contact_us')
     }
+
+    navigateToProducts() {
+        cy.visit('/products')
+    }
 }
 
 export default new Menu()
