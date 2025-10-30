@@ -25,5 +25,5 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('navegarParaLogin', () => {
-    cy.get('a[href="/login"]').click()
+    cy.get('a[href="/login"]').click();
 })

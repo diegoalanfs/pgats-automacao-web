@@ -59,12 +59,12 @@ class Cart {
     }
 
     clickPayAndConfirmOrder() {
-        cy.get('[data-qa="pay-button"]').click()
+        cy.get('[data-qa="pay-button"]').click();
     }
 
     checkOrderPlaced(message) {
-        cy.get('[data-qa="order-placed"]').should('be.visible')
-        cy.get('.col-sm-9 > p').should('contain', message)
+        cy.get('[data-qa="order-placed"]').should('be.visible');
+        cy.get('.col-sm-9 > p').should('contain', message);
     }
 
     checkout(productsId) {

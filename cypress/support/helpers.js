@@ -1,7 +1,7 @@
 export function getRandomNumber(){
-    return new Date().getTime()
+    return new Date().getTime();
 }
 
 export function getRandomEmail(){
-    return `qa-tester-${getRandomNumber()}@mail.com`
+    return `qa-tester-${getRandomNumber()}@mail.com`;
 }

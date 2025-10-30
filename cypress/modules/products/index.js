@@ -22,21 +22,21 @@ class Product {
 
     checkDetailsAreVisible() {
         cy.get('div.product-information h2')
-            .should('be.visible')
+            .should('be.visible');
         cy.get('div.product-information p')
             .should('contain.text', 'Category')
-            .should('be.visible')
+            .should('be.visible');
         cy.get('div.product-information span span')
-            .should('be.visible')
+            .should('be.visible');
         cy.get('div.product-information p')
             .should('contain.text', 'Availability')
-            .should('be.visible')
+            .should('be.visible');
         cy.get('div.product-information p')
             .should('contain.text', 'Condition')
-            .should('be.visible')
+            .should('be.visible');
         cy.get('div.product-information p')
             .should('contain.text', 'Brand')
-            .should('be.visible')
+            .should('be.visible');
     }
 
     fillSearchProduct(name, time = 0) {
@@ -52,7 +52,7 @@ class Product {
     }
 
     checkSearchProduct (product){
-        cy.get('div.productinfo.text-center p').should('contain',  product)
+        cy.get('div.productinfo.text-center p').should('contain',  product);
     }
 }
 

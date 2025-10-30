@@ -1,26 +1,22 @@
 class Menu {
     navigateToLogin() {
-        cy.visit('/login')
+        cy.visit('/login');
     }
 
     navigateToContectUs() {
-        cy.visit('/contact_us')
+        cy.visit('/contact_us');
     }
 
     navigateToProducts() {
-        cy.visit('/products')
+        cy.visit('/products');
     }
 
-    navigateTohome() {
-        cy.visit('')
+    navigateToHome() {
+        cy.visit('');
     }
 
     navigateToCart() {
-        cy.visit('/view_cart')
-    }
-
-    clickDeleteAccount (){
-        cy.get('a[href="/delete_account"]').click();
+        cy.visit('/view_cart');
     }
 }
 
