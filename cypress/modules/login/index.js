@@ -1,6 +1,3 @@
-import { getRandomEmail } from '../../support/helpers'
-import { faker } from '@faker-js/faker'
-
 // ***************** MESSAGES *****************
 export const ERROR_MSG_INCORRECT_LOGIN =
   'Your email or password is incorrect!'
@@ -9,9 +6,9 @@ export const ERROR_MSG_EXISTING_USER =
 
 
 class Login {
-    fillPreRegisterForm() {
-        cy.get('input[data-qa="signup-name"]').type(faker.person.firstName())
-        cy.get('input[data-qa="signup-email"]').type(getRandomEmail())
+    fillPreRegisterForm(name, email) {
+        cy.get('input[data-qa="signup-name"]').type(name)
+        cy.get('input[data-qa="signup-email"]').type(email)
         cy.contains('button', 'Signup').click()
     }
 

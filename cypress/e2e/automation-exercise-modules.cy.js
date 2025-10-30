@@ -10,9 +10,12 @@ import login, {
 import cadastro from '../modules/register/index'
 import contact from '../modules/contact/index'
 import product from '../modules/products/index'
+import cart from '../modules/cart/index'
 import home, {
     SUCCESS_MSG_SUBSCRIBED
 } from '../modules/home/index'
+import { faker } from '@faker-js/faker'
+import { getRandomEmail } from '../support/helpers'
 
 describe('Automation Exercise', () => {
 
@@ -21,8 +24,11 @@ describe('Automation Exercise', () => {
     })
 
     it('Register User', () => {
+        const name = faker.person.firstName()
+        const email = getRandomEmail()
+
         menu.navigateToLogin()
-        login.fillPreRegisterForm()
+        login.fillPreRegisterForm(name, email)
         cadastro.fillCompleteRegisterForm()
         cadastro.clickCreateAccount()
         cadastro.checkAccountCreated()
@@ -96,4 +102,28 @@ describe('Automation Exercise', () => {
         home.checkSubscription(SUCCESS_MSG_SUBSCRIBED)
     });
 
+    it('Place Order: Register before Checkout', () => {
+        const name = faker.person.firstName();
+        const email = getRandomEmail();
+        const productsId = [1, 2, 3];
+        const comment = faker.lorem.lines(2);
+
+        menu.navigateToLogin();
+        login.fillPreRegisterForm(name, email);
+        cadastro.registerUser();
+        login.checkLoggedUser(name);
+
+        productsId.forEach(productId => {
+            cart.addProductToCart(productId);
+            cart.clickContinueShoppingButton();
+        });
+
+        menu.navigateToCart();
+        cart.checkCartPage();
+        cart.checkout(productsId);
+        cart.enterComment(comment);
+        cart.clickPlaceOrder();
+        cart.payment();
+        home.deleteAccount();
+    });
 });

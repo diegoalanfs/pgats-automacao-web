@@ -14,6 +14,14 @@ class Menu {
     navigateTohome() {
         cy.visit('')
     }
+
+    navigateToCart() {
+        cy.visit('/view_cart')
+    }
+
+    clickDeleteAccount (){
+        cy.get('a[href="/delete_account"]').click();
+    }
 }
 
 export default new Menu()

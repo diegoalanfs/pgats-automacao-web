@@ -31,6 +31,17 @@ class Cadastro {
         cy.url().should('include', 'account_created')
         cy.get('[data-qa="account-created"]').should('have.text', 'Account Created!')
     }
+
+    clickButtonContinue (){
+        cy.get('[data-qa="continue-button"]').click()
+    }
+
+    registerUser (){
+        this.fillCompleteRegisterForm();
+        this.clickCreateAccount();
+        this.checkAccountCreated();
+        this.clickButtonContinue();
+    }
 }
 
 export default new Cadastro()

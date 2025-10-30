@@ -16,7 +16,7 @@ describe('Automation Exercise', () => {
         cy.get('a[href="/login"]').click()
     })
 
-    it.only('Register User', () => {
+    it.skip('Register User', () => {
         //const timestamp = new Date().getTime()
 
         cy.get('input[data-qa="signup-name"]').type('QA Tester')
@@ -51,7 +51,7 @@ describe('Automation Exercise', () => {
 
     });
 
-    it('Login User with correct email and password', () => {
+    it.skip('Login User with correct email and password', () => {
 
         cy.get('[data-qa="login-email"]').type('qa-tester-1759531043853@mail.com')
         cy.get('[data-qa="login-password"]').type('pwd123')
@@ -63,7 +63,7 @@ describe('Automation Exercise', () => {
 
     })
 
-    it('Login User with incorrect email and password', () => {
+    it.skip('Login User with incorrect email and password', () => {
 
         cy.get('[data-qa="login-email"]').type('invalid@mail.com')
         cy.get('[data-qa="login-password"]').type('147845')
@@ -74,7 +74,7 @@ describe('Automation Exercise', () => {
 
     })
 
-    it('Logout User', () => {
+    it.skip('Logout User', () => {
 
         cy.get('[data-qa="login-email"]').type('qa-tester-1759531043853@mail.com')
         cy.get('[data-qa="login-password"]').type('pwd123')
@@ -94,7 +94,7 @@ describe('Automation Exercise', () => {
 
     })
 
-    it('Register User with existing email', () => {
+    it.skip('Register User with existing email', () => {
 
         cy.get('input[data-qa="signup-name"]').type('QA Tester')
         cy.get('input[data-qa="signup-email"]').type('qa-tester-1759531043853@mail.com')
