@@ -23,7 +23,7 @@ describe('Automation Exercise', () => {
         menu.navigateToHome();
     })
 
-    it('Register User', () => {
+    it('1- Register User', () => {
         const name = faker.person.firstName();
         const email = getRandomEmail();
 
@@ -34,19 +34,19 @@ describe('Automation Exercise', () => {
         cadastro.checkAccountCreated();
     });
 
-    it('Login User with correct email and password', () => {
+    it('2- Login User with correct email and password', () => {
         menu.navigateToLogin();
         login.fillLoginForm(userData.user, userData.password);
         login.checkLoggedUser(userData.name);
     })
 
-    it('Login User with incorrect email and password', () => {
+    it('3- Login User with incorrect email and password', () => {
         menu.navigateToLogin();
         login.fillLoginForm('invalid@mail.com', '147845');
         login.checkIncorrectLogin(ERROR_MSG_INCORRECT_LOGIN);
     })
 
-    it('Logout User', () => {
+    it('4- Logout User', () => {
         menu.navigateToLogin();
         login.fillLoginForm(userData.user, userData.password);
         login.checkLoggedUser(userData.name);
@@ -54,13 +54,13 @@ describe('Automation Exercise', () => {
         login.checkLogout();
     })
 
-    it('Register User with existing email', () => {
+    it('5- Register User with existing email', () => {
         menu.navigateToLogin();
         login.fillFormWithExistingUser(userData.name, userData.user);
         login.checkExistingUser(ERROR_MSG_EXISTING_USER);
     })
 
-    it('Contact Us Form', () => {
+    it('6- Contact Us Form', () => {
         menu.navigateToContectUs();
         contact.fillContactUsForm(
             contactData.name,
@@ -72,7 +72,7 @@ describe('Automation Exercise', () => {
         contact.checkDataSubmit();
     });
 
-    it('Verify All Products and product detail page', () => {
+    it('8- Verify All Products and product detail page', () => {
         menu.navigateToProducts();
         product.verifyTitleText('All Products');
         product.verifyProductsAtList();
@@ -81,7 +81,7 @@ describe('Automation Exercise', () => {
         product.checkDetailsAreVisible();
     });
 
-    it('Search Product', () => {
+    it('9- Search Product', () => {
         const productName = 'Blue Top'
 
         menu.navigateToProducts();
@@ -93,7 +93,7 @@ describe('Automation Exercise', () => {
         product.checkSearchProduct(productName);
     });
 
-    it('Verify Subscription in home page', () => {
+    it('10- Verify Subscription in home page', () => {
         menu.navigateToHome();
         home.verifyHomePage();
         home.scrollToBottom();
@@ -103,7 +103,7 @@ describe('Automation Exercise', () => {
         home.checkSubscription(SUCCESS_MSG_SUBSCRIBED);
     });
 
-    it('Place Order: Register before Checkout', () => {
+    it('15- Place Order: Register before Checkout', () => {
         const name = faker.person.firstName();
         const email = getRandomEmail();
         const productsId = [1, 2, 3];
